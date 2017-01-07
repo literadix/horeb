@@ -2,5 +2,9 @@ language: go
 go: 
  - 1.7.x
 
+install:
+  - go get github.com/bmizerany/assert
+  - go get github.com/mrb/hob
+  
 script:
  - go build -v -o bin/horeb
