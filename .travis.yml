@@ -3,6 +3,10 @@ language: go
 notifications:
   email: false
 
+env:
+  global:
+    - GOARCH=amd64
+
 go: 
  - 1.7.x
 
