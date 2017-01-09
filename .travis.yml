@@ -18,3 +18,14 @@ gobuild_args: -x -ldflags "-X main.VersionString v1.2.3"
   
 script:
  - go build -v -o bin/horeb
+
+after_success:
+  - tar -vzcf /tmp/horeb_linux_amd64.tar.gz bin/horeb
+
+deploy:
+  provider: releases
+  api_key:
+    secure: a+S4g/VyorKFdgVt2Pd/2aqTiW4/5tP5Xc1rlbjLdKytBJTMv4Lq6Y/gkhgmkVk994EBg4d6MxrmhqEUAG7FBHYYIHpAOPWkcMqcOyZx8Euq5LPv/t85tmoFZjo2J65gPl1in+XVHg/xGwiOfEhod8c6nOegDXmKsWGFCOXc7BrkSMQFUlME4Ai2Ra/jd7pvGCR+/osdXIwOhI8YhBTOXbvPPKsqBe7ZcNEbzNEhr7o3REJUy9RIxglloatvTF1aAhDIThuoCsU1eVDV0m4RRfuHhw9XFpKnmxl/6031F4g5Y57AJFOvs6AfmvUOAvKyN7KJum+Bp7hZCk3171cteOzrTqluq7G+XE4MzAlGyf5pnGlIY4pVCVmerjGn0cJw3VpyrIPqbdHG9AblPzHFD5X12E7plOaWNn/bbEtX4yhOSHhNkXiKAmgGjoNCwkCiTyT7Kzn/8OrKCuFbcITHsp0zKc5t0D2YOYDM6EylJtSeU3uD8ChCqxEkhIFe3XEKCeA+tOp/nMOXu+lKu7F4rGqx+3SlwnETvFTKil/Ho6xOzRE4XiSBSjD4vdWM35qiDYz8woqBYENI9/kD15lfn9YAS473dOBA8OMLOzysFprDAqYsjzsHuw+t3cWM1QPrQcva6LhRbs8I0AtXIZzJJAI+BZxU9QPuyeusr1pcYIg=
+  file: /tmp/horeb_linux_amd64.tar.gz
+  on:
+    repo: literadix/horeb
