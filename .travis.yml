@@ -1,23 +1,23 @@
 language: go
-
 notifications:
   email: false
-
 env:
   global:
-    - GOARCH=amd64
-
-go: 
- - 1.8.x
-
+  - GOARCH=amd64
+go:
+- 1.8.x
 install:
-  - go get -v github.com/bmizerany/assert
-  - go get -v github.com/mrb/hob
-  
-gobuild_args: -x -ldflags "-X main.VersionString v1.2.3" 
-  
+- go get -v github.com/bmizerany/assert
+- go get -v github.com/mrb/hob
+gobuild_args: -x -ldflags "-X main.VersionString v1.2.3"
 script:
- - go build -v -o bin/horeb
-
+- go build -v -o bin/horeb
 after_success:
-  - tar -vzcf /tmp/horeb_linux_amd64.tar.gz bin/horeb
+- tar -vzcf /tmp/horeb_linux_amd64.tar.gz bin/horeb
+deploy:
+  provider: releases
+  api_key:
+    secure: mlA27CsMC8EbFC2OEJfjorYzLrDDd92cEz1kpLOl1f0M42xZFFKNqtWGrQmziYsEsOsTN/Qh5WXuBCXdyLkM2j58Mj1z4ACWFc0nkYrHTuvrku+A5q1M3SOiyJ36OxftpBabmc3n58e0nErz8lIDqE/U/gf1DaEMIF/uKu4E4LGv9JBbnjXwjmHpZbdfUW1ycvorPCoh9opGgqyltxo192vXrTg3Feoeo4wWDD6+CZLNoXIwTy2SwjdA5vLBxse/IjQbLpLZFmQIRGYUnMutRFgJyPL7IIjxOuMUziojVvqqNv5NPFdbOp2qk72CXdveM6TxHQ2dc+GB+3sK13BukIycYgWsmpAi/SIKCru9OWZrNdlahnK5r3wwdw4h01Bn1yFrvs85oO7JAh825f9AdUbamdINLnzogRjDmGU1FTLsONBbKL7hIopiLKJQvDQ7qUVktnCAzck8g7hUfMQoXNQA7/4PTWzYXpDGufhLz45aobyNhk+TSYswKjohlIbz9LjjwgkTuMkcuKa8c3RLYvjM1amSZoHBxXUvfZRIaPb/0hqPrghA1ZYtb6E1N8rNx84yNrxQjign+9tuah7p3e8hNzqoedu3SQjKymSYZvTP1MHng19Os5bqnfhKSu6K5+5zG9AQ5h2HS9YFLR785fZp24LTjkjIsxQMyQtNpF0=
+  file: "/tmp/horeb_linux_amd64.tar.gz"
+  on:
+    repo: literadix/horeb
