@@ -8,7 +8,7 @@ env:
     - GOARCH=amd64
 
 go: 
- - 1.7.x
+ - 1.8.x
 
 install:
   - go get -v github.com/bmizerany/assert
