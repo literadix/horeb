@@ -21,3 +21,5 @@ deploy:
   file: "/tmp/horeb_linux_amd64.tar.gz"
   on:
     repo: literadix/horeb
+    tags: true
+    all_branches: true
